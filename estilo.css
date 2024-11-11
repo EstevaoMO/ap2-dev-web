@@ -36,7 +36,7 @@ header.preto{
 }
 
 #titulo-login{
-    margin-left: 2rem;
+    margin-bottom: 5rem;
     font-size: 3.5em;
     line-height: 1.1em;
     text-align: center;
@@ -45,6 +45,7 @@ header.preto{
 .login-container{
     display: flex;
     justify-content: center;
+    margin: 0;
     width: 20rem;
     height: 2.2rem;
 }
@@ -73,6 +74,10 @@ header.preto{
     background-color: #000000;
 }
 
+#enviar-senha:active{
+    background-color: #1d1d1d;
+}
+
 @media screen and (min-width: 768px) {
     .container-paginainicial{
         display: flex;
@@ -80,8 +85,23 @@ header.preto{
         flex-wrap: nowrap;
         gap: 3.5rem;
     }
+    
+    #titulo-login{
+        text-align: center;
+        margin: 0 2rem;
+        width: 10em;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .container-paginainicial{
+        margin: auto 10rem;
+        justify-content: space-around;
+    }
 
     #titulo-login{
-        text-align: left;
+        text-align: center;
+        margin: 0 2rem;
+        width: 12em;
     }
 }
