@@ -7,18 +7,22 @@
     <title>Página Inicial - Minha AP2, Estevão Batista de Moraes</title>
 </head>
 <body>
-    <header class="preto">
+    <header class="layout" id="principal">
         <img id="escudo-header" src="./escudo.png" alt="escudo do botafogo">
         <h1 id="titulo-header">Botafogo</h1>
     </header>
 
-    <div class="container-paginainicial">
+    <div class="container-principal" id="pagina-inicial">
 
         <h1 id="titulo-login">Atletas do Botafogo 2024.2</h1>
 
-        <div class="login-container">
-            <input id="escrever-senha" type="text" placeholder="Senha...">
-            <button id="enviar-senha" onclick="verificarSenha()">Entrar</button>
+        <div id="container-de-acesso">
+            <div class="login-container">
+                <input id="escrever-senha" type="text" placeholder="Senha...">
+                <button id="enviar-senha" onclick="efetuarLogin()">Entrar</button>
+            </div>
+
+            <p id="texto-da-senha">Acesse com a senha FLAMENGO.</p>
         </div>
     </div>
 

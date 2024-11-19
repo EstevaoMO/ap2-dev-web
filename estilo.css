@@ -6,7 +6,7 @@ html, body{
     padding: 0;
 }
 
-header.preto{
+header.layout{
     background-color: #0c0c0c;
     display: flex;
     align-items: center;
@@ -14,6 +14,11 @@ header.preto{
     width: 100%;
     height: 4rem;
     justify-content: center;
+}
+
+header.layout#secundario{
+    justify-content: space-between;
+    width: 100%;
 }
 
 #escudo-header{
@@ -26,7 +31,7 @@ header.preto{
     color: #FFFFFF;
 }
 
-.container-paginainicial{
+.container-principal{
     display: flex;
     padding: 2rem;
     justify-content: center;
@@ -40,6 +45,13 @@ header.preto{
     font-size: 3.5em;
     line-height: 1.1em;
     text-align: center;
+}
+
+#container-de-acesso{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
 }
 
 .login-container{
@@ -78,8 +90,72 @@ header.preto{
     background-color: #1d1d1d;
 }
 
+#texto-da-senha{
+    margin-top: 0.4rem;
+    text-align: center;
+}
+
+div#logotipo{
+    margin: 0 1rem;
+    display: inline-flex;
+    gap: 0.2rem;
+    align-items: center;
+}
+
+#logout{
+    margin: 0 1rem;
+    background-color: #FFFFFF;
+    border: none;
+    font-size: 1em;
+    padding: 3px 10px;
+    border-radius: 5px;
+}
+
+.busca-e-filtragem, .filtragem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.busca-e-filtragem{
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#busca-por-nome{
+    width: 15rem;
+    height: 1.2rem;
+    padding: 10px;
+    outline: 0.5px solid #0c0c0c;
+}
+
+#busca-por-nome:focus{
+    outline: 2px solid #0c0c0c;
+}
+
+#filtro-telas-maiores{
+    display: none;
+}
+
+button.filtro {
+    margin: 0 5px;
+    font-size: .9em;
+    padding: 5px;
+    background-color: #FFFFFF;
+    border: 1px solid #0c0c0c;
+    text-align: center;
+}
+
+button.filtro:hover{
+    background-color: #d1d1d1;
+}
+
+button.filtro:active{
+    font-size: .91em;
+}
+
 @media screen and (min-width: 768px) {
-    .container-paginainicial{
+    .container#paginainicial{
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -91,10 +167,18 @@ header.preto{
         margin: 0 2rem;
         width: 10em;
     }
+
+    #filtro-telas-menores{
+        display: none;
+    }
+
+    #filtro-telas-maiores{
+        display: flex;
+    }
 }
 
 @media screen and (min-width: 1200px){
-    .container-paginainicial{
+    .container#paginainicial{
         margin: auto 10rem;
         justify-content: space-around;
     }

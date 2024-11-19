@@ -6,10 +6,42 @@
     <link rel="stylesheet" href="./estilo.css">
     <script src="./script.js" defer></script>
 
-    <title>Atletas de 2024 do Botafogo - Minha AP2, Estevão Batista de Moraes</title>
+    <title>Atletas de 2024 do Botafogo</title>
 
 </head>
 <body>
-    <button id="logout">Sair</button>
+    <header class="layout" id="secundario">
+        <div id="logotipo">
+            <img id="escudo-header" src="./escudo.png" alt="escudo do botafogo">
+            <h1 id="titulo-header">Botafogo</h1>
+        </div>
+
+        <button id="logout">Sair</button>
+    </header>
+    
+    <div class="container-principal" id="pagina-atletas">
+        <div class="busca-e-filtragem">
+            <div class="filtragem">
+                <select id="filtro-telas-menores" name="filtragem">
+                    <option disabled>Escolha um filtro</option>
+                    <option value="todos-os-elencos">Todos os elencos</option>
+                    <option value="elenco-masculino">Elenco masculino</option>
+                    <option value="elenco-feminino">Elenco feminino</option>
+                </select>
+
+                <div id="filtro-telas-maiores">
+                    <button class="filtro" id="filtro-masculino">Masculino</button>
+                    <button class="filtro" id="filtro-feminino">Feminino</button>
+                    <button class="filtro" id="filtro-todos-os-elencos">Todos os elencos</button>
+                </div>
+            </div>
+
+            <div class="busca">
+                <input type="text" name="busca-por-nome" id="busca-por-nome" placeholder="Pesquisa por nome...">
+
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
