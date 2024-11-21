@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+}
+
+#cartoes-atletas{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    width: 98%;
+    gap: 5px;
+}
+
+.cartao{
+    width: 15rem;
+    margin-bottom: .25rem;
+    padding: 5px 10px;
+    font-size: .8em;
+    background-color: #0c0c0c;
+    color: #ffffff;
+}
+
+.cartao > h1{
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+.cartao > img{
+    width: 100%;
+    height: 20rem;
+}
+
+@media screen and (min-width: 768px) {
+    #cartoes-atletas{
+        grid-template-columns: 1fr 1fr 1fr;  
+    }  
+}
+
+@media screen and (min-width: 1024px) {
+    #cartoes-atletas{
+        grid-template-columns: 1fr 1fr 1fr 1fr;  
+    }  
+}
+
+@media screen and (min-width: 1300px) {
+    #cartoes-atletas{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;  
+    }     
+}
+
+@media screen and (min-width: 1400px) {
+    #cartoes-atletas{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;  
+    }     
+}

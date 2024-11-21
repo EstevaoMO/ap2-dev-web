@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./estilo.css">
+    <link rel="stylesheet" href="./estilo-cartoes.css">
     <script src="./script.js" defer></script>
 
     <title>Atletas de 2024 do Botafogo</title>
@@ -30,17 +31,19 @@
                 </select>
 
                 <div id="filtro-telas-maiores">
-                    <button class="filtro" id="filtro-masculino">Masculino</button>
-                    <button class="filtro" id="filtro-feminino">Feminino</button>
-                    <button class="filtro" id="filtro-todos-os-elencos">Todos os elencos</button>
+                    <button onclick="renderizarTudo()" class="filtro" id="filtro-todos-os-elencos">Todos os elencos</button>
+                    <button onclick="renderizarMasculino()" class="filtro" id="filtro-masculino">Masculino</button>
+                    <button onclick="renderizarFeminino()" class="filtro" id="filtro-feminino">Feminino</button>
                 </div>
             </div>
 
             <div class="busca">
                 <input type="text" name="busca-por-nome" id="busca-por-nome" placeholder="Pesquisa por nome...">
-
             </div>
         </div>
+        
+        
+        <div id="cartoes-atletas"> <!-- Aqui entra os cartões e todas as informações da API --> </div>
     </div>
 
 </body>
