@@ -84,6 +84,7 @@ header.layout#secundario{
 
 #enviar-senha:hover{
     background-color: #000000;
+    cursor: pointer;
 }
 
 #enviar-senha:active{
@@ -126,12 +127,12 @@ div#logotipo{
 #busca-por-nome{
     width: 15rem;
     height: 1.2rem;
-    padding: 1rem;
+    padding: 1.2rem;
     outline: 0.5px solid #0c0c0c;
 }
 
 #busca-por-nome:focus{
-    outline: 1px solid #0c0c0c;
+    outline: 1.5px solid #0c0c0c;
 }
 
 #filtro-telas-maiores{
@@ -166,6 +167,7 @@ button.filtro-ativo{
     background-color: #0c0c0c;
     color: #ffffff;
 }
+
 
 @media screen and (min-width: 768px) {
     .container-principal#pagina-inicial{

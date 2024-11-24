@@ -1,18 +1,21 @@
-const senha_correta = 'FLAMENGO'; // Adicionar a criptografia hash
+const senha_correta = "466914e2398850c2f2545cf1df4e08b395e54c21ea481ee7bef85f5b40883480"; // FLAMENGO com criptografia hash
 const corpo_pagina = document.body;
 const pagina_atletas  = document.getElementById("cartoes-atletas");
 const caixa_busca = document.getElementById("busca-por-nome");
+const elenco_select = document.getElementById("filtro-telas-menores");
 
 const filtro_todos = document.getElementById("filtro-todos-os-elencos");
 const filtro_masculino = document.getElementById("filtro-masculino");
 const filtro_feminino = document.getElementById("filtro-feminino");
 let botaoAtivo;
 
+let atletas;
+
 // FUNÇÃO PARA VERIFICAR EFETUAR LOGIN CHAMADA NO onClick DO BOTÃO "ENTRAR"
 function efetuarLogin(){
     const senha_inserida = document.getElementById("escrever-senha").value;
     
-    if (senha_inserida === senha_correta){
+    if (hex_sha256(senha_inserida) === senha_correta){
         sessionStorage.setItem('login?', true);
         window.location.replace("atletas.html");
     }
@@ -38,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
 document.getElementById("logout").onclick = () => {
     sessionStorage.setItem("login?", false);
     window.location.replace("index.html");
-    alert("Saiu!");
 }
 
 // Consulta a API e pega os dados
@@ -51,10 +53,9 @@ const pega_json = async (caminho) => {
 // Constrói o cartão
 const constroiCartao = (atleta) => {
     const cartao = document.createElement("div");
-    cartao.classList.add("cartao")
+    cartao.classList.add("cartao");
     const nome = document.createElement("h1");
     const imagem = document.createElement("img");
-    const descricao = document.createElement("p");
     const caminho = document.createElement("a");
     
     nome.innerHTML = atleta.nome;
@@ -63,14 +64,24 @@ const constroiCartao = (atleta) => {
     imagem.src = atleta.imagem;
     cartao.appendChild(imagem);
 
-    descricao.innerHTML = atleta.detalhes;
-    cartao.appendChild(descricao);
+    caminho.innerHTML = "SAIBA MAIS";
+    caminho.href = `descricao.html?id=${atleta.id}`;
+    cartao.appendChild(caminho);
+    
+    pagina_atletas.appendChild(cartao);
+}
 
-    caminho.innerHTML = "Saiba mais..."
-    caminho.href = `detalhes.html?id=${atleta.id}`
-    cartao.appendChild(caminho)
-
-    pagina_atletas.appendChild(cartao)
+const mostrarCards = (atletas) => {
+    atletas.forEach((atleta) => {
+        if (caixa_busca.value === "") { 
+            constroiCartao(atleta); 
+        }
+        if (caixa_busca.value !== "") {
+            if (atleta.nome.toLowerCase().includes(caixa_busca.value.toLowerCase())) {
+                constroiCartao(atleta);
+            }
+        }
+    })
 }
 
 // Verifica se o usuário está logado antes de exibir a página de atletas
@@ -81,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mensagem.innerText = "Você não pode ver sem estar logado!";
 
         corpo_pagina.appendChild(mensagem);
-
+        
         return;
     }}
 )
@@ -97,9 +108,10 @@ const renderizarTudo = () => {
     pagina_atletas.innerHTML = "";
     pega_json("https://botafogo-atletas.mange.li/2024-1/all").then(
         (retorno) => {
-            retorno.forEach((atleta) => constroiCartao(atleta))
+            atletas = retorno;
+            mostrarCards(atletas);
         })
-    }
+}
     
 const renderizarMasculino = () => {
     filtro_todos.classList.remove('filtro-ativo');
@@ -112,7 +124,8 @@ const renderizarMasculino = () => {
     pagina_atletas.innerHTML = "";
     pega_json("https://botafogo-atletas.mange.li/2024-1/masculino").then(
         (retorno) => {
-            retorno.forEach((atleta) => constroiCartao(atleta))
+            atletas = retorno;
+            mostrarCards(atletas);
         })
 }
     
@@ -122,32 +135,34 @@ const renderizarFeminino = () => {
     
     botaoAtivo = filtro_feminino;
     botaoAtivo.classList.add('filtro-ativo');
-
+    
     pagina_atletas.innerHTML = "";  
     pega_json("https://botafogo-atletas.mange.li/2024-1/feminino").then(
         (retorno) => {
-            retorno.forEach((atleta) => constroiCartao(atleta))
+            atletas = retorno;
+            mostrarCards(atletas);
         })
 }
-
-
-// Pesquisa por nome
-/* caixa_busca.addEventListener('keyup', () => {
-
-    pagina_atletas.innerHTML = "";
-    if (caixa_busca.value !== ""){
-    pega_json("https://botafogo-atletas.mange.li/2024-1/all").then(
-        (retorno) => { 
-            retorno.forEach((atleta) => {
-                if (atleta.nome.includes(caixa_busca.value)){
-                    constroiCartao(atleta)
-                }
-            })
-        })
-    }  
-}) */
-
-// Preenchimento da página de detalhes
-const criarDetalhes = () => {
     
-}
+// Verifica o select
+elenco_select.addEventListener('change', () => {
+    if (elenco_select.value === "nada"){
+        pagina_atletas.innerHTML = "";
+    }
+    if (elenco_select.value === "todos-os-elencos"){
+        renderizarTudo();
+    }
+    if (elenco_select.value === "elenco-masculino"){
+        renderizarMasculino();
+    }
+    if (elenco_select.value === "elenco-feminino"){
+        renderizarFeminino();      
+    }
+})
+
+// De olho na busca
+caixa_busca.addEventListener('keyup', () => {
+    pagina_atletas.innerHTML = "";
+
+    mostrarCards(atletas);
+})
